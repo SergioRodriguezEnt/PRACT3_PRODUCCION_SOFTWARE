@@ -33,6 +33,12 @@ def add_expense(context, amount, title):
         title=title, amount=amount, description="", expense_date=date.today()
     )
 
+@when(parsers.parse("añado un gasto de {amount:d} euros llamado {title} para la fecha {exp_date}"))
+def add_date_expense(context, amount, title, exp_date):
+    context["service"].create_expense(
+        title=title, amount=amount, description="", expense_date=date.fromisoformat(exp_date)
+    )
+
 
 @when(parsers.parse("elimino el gasto con id {expense_id:d}"))
 def remove_expense(context, expense_id):

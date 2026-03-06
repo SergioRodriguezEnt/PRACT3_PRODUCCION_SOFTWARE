@@ -48,18 +48,18 @@ Feature: Gestión de gastos
     And elimino el gasto con id 3
     Then el total de dinero gastado debe ser 40 euros
 
-  Scenario: Crear un gasto y que el mes anterior no tenga gastos
+  Scenario: Crear un gasto en un mes y que el actual no tenga gastos
     Given un gestor de gastos vacío
-    When añado un gasto de 10 euros llamado Algo
-    Then 2026-01 debe sumar 0 euros
+    When añado un gasto de 10 euros llamado Algo para la fecha 2026-01-02
+    Then 2026-03 debe sumar 0 euros
   
   Scenario: Crear un gasto de 30 euros y que el mes actual tenga gastos que sumen 30 euros.
     Given un gestor de gastos vacío
-    When añado un gasto de 30 euros llamado Algo
+    When añado un gasto de 30 euros llamado Algo para la fecha 2026-03-01
     Then 2026-03 debe sumar 30 euros
     
-  Scenario: Crear un gasto de 10 euros, eliminarlo, y quel el mes actual no tenga gastos
+  Scenario: Crear un gasto de 10 euros para un mes, eliminarlo, y quel dicho mes no tenga gastos
     Given un gestor de gastos vacío
-    When añado un gasto de 10 euros llamado Algo
+    When añado un gasto de 10 euros llamado Algo para la fecha 2026-02-01
     And elimino el gasto con id 1
-    Then 2026-03 debe sumar 0 euros
+    Then 2026-02 debe sumar 0 euros

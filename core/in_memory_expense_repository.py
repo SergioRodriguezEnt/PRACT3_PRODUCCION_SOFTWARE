@@ -21,7 +21,11 @@ class InMemoryExpenseRepository(ExpenseRepository):
         :param expense_id:  La id del gasto
         :return: None
         """
-        ...
+
+        for x in range(0, len(self._expenses)):
+            if self._expenses[x].id == expense_id:
+                self._expenses.pop(x)
+                return
 
     def get_by_id(self, expense_id: int) -> Expense | None:
         return next(
